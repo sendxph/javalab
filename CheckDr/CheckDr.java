@@ -10,9 +10,9 @@ import org.jsoup.select.Elements;
 
 public class CheckDr {
 	public static void main(String[] args) throws Exception {
-		URL url = new URL("https://reg.ntuh.gov.tw/WebAdministration/ClinicDt.aspx?x=QQBNAFAATQA9ADEAJgBEAHQAQwBvAGQAZQA9ADYAMAAwADAAMAAyACYAQwBsAGkAbgBpAGMAQwBvAGQAZQA9ADAAMQAmAFMAdQBiAEQAZQBwAHQAQwBvAGQAZQA9ADAAMgAmAEgAbwBzAHAAPQBUADAAJgBEAGUAcAB0AD0ATQBFAEQAJgBEAGEAdABlAD0AMgAwADEANQAvADEAMAAvADAAMgAmAFMAcgB2AEkARAA9ADIAMgAyADgAOAAyADcAJgBUAGUAbQBwAEkARAA9ADIAMgA5ADUA0");
+		URL url = new URL("https://reg.ntuh.gov.tw/WebAdministration/DtQueryB.aspx?Name=%E7%8E%8B%E6%B2%BB%E5%85%83");
 		Document doc = Jsoup.parse(url, 3000);
-		Elements title = doc.select("title");
-		System.out.println(title.get(0).text());
+		Elements sta = doc.select("td");
+		System.out.println(sta.get(19).text());
 	}
 }

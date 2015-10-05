@@ -14,5 +14,10 @@ public class CheckDr {
 		Document doc = Jsoup.parse(url, 3000);
 		Elements sta = doc.select("td");
 		System.out.println(sta.get(19).text());
+		if ( (sta.get(19).text()).equals("停止掛號") ) {
+			System.out.println("No......無法掛號");
+		} else {
+			System.out.println("Yes.....可以掛號了!!");
+		}
 	}
 }

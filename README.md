@@ -1,4 +1,5 @@
 # javalab
 
-- CheckDr: A checking program
+- checkDr: A checking program
 - learning: Java function test
+

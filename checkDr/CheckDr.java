@@ -1,6 +1,5 @@
 // Checking Dr.
 
-import java.net.URL;
 import java.util.Iterator;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -10,7 +9,8 @@ import org.jsoup.select.Elements;
 
 public class CheckDr {
 	public static void main(String[] args) throws Exception {
-		String dr_url = "https://reg.ntuh.gov.tw/WebAdministration/DtQueryB.aspx?Name=%E7%8E%8B%E6%B2%BB%E5%85%83";		// Set Dr. url
+		//String dr_url = "https://reg.ntuh.gov.tw/WebAdministration/DtQueryB.aspx?Name=%E7%8E%8B%E6%B2%BB%E5%85%83";		// real Dr url
+		String dr_url = "https://reg.ntuh.gov.tw/WebAdministration/DtQueryA.aspx?x=SABvAHMAcAA9AFQAMAAmAE4AYQBtAGUAPQAhfE56wHk1";	// test Dr url
 		int n = 1;			// Check number
 		int retry = 5000;	// retry time
 		String sta = "";		// Dr. status
@@ -18,11 +18,10 @@ public class CheckDr {
 		while (sta.equals("")) {
 			try {
 				Thread.sleep(retry);
-				URL url = new URL(dr_url);
-				Document doc = Jsoup.parse(url, 3000);
+				Document doc = Jsoup.connect(dr_url).get();
 				
 				Elements td = doc.select("td");
-				sta = td.get(19).text();
+				sta = td.get(20).text();
 				System.out.println(String.format("第 %d 次檢查:", n));
 				System.out.println(">> " + sta);
 				if ( sta.equals(". 掛號 .") ) {

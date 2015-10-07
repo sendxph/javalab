@@ -12,7 +12,7 @@ public class CheckDr {
 		//String dr_url = "https://reg.ntuh.gov.tw/WebAdministration/DtQueryB.aspx?Name=%E7%8E%8B%E6%B2%BB%E5%85%83";		// real Dr url
 		String dr_url = "https://reg.ntuh.gov.tw/WebAdministration/DtQueryA.aspx?x=SABvAHMAcAA9AFQAMAAmAE4AYQBtAGUAPQAhfE56wHk1";	// test Dr url
 		int n = 1;			// Check number
-		int retry = 5000;	// retry time
+		int retry = 2000;	// retry time
 		String sta = "";		// Dr. status
 		
 		while (sta.equals("")) {

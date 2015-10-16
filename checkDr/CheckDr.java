@@ -1,6 +1,5 @@
 // Checking Dr.
 
-import java.util.Iterator;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.parser.Parser;
@@ -12,26 +11,14 @@ public class CheckDr {
 		//String dr_url = "https://reg.ntuh.gov.tw/WebAdministration/DtQueryB.aspx?Name=%E7%8E%8B%E6%B2%BB%E5%85%83";		// real Dr url
 		String dr_url = "https://reg.ntuh.gov.tw/WebAdministration/DtQueryA.aspx?x=SABvAHMAcAA9AFQAMAAmAE4AYQBtAGUAPQAhfE56wHk1";	// test Dr url
 		int n = 1;			// the number of checking
-		int retry = 2000;	// retry time
+		int retry = 1000;	// retry interval time
 		String sta = "";		// Dr. status
-		int hasFree = 0;		// 有空缺可以掛號的數量
+		int hasFree = 0;		// 有多少空缺數可以掛號
 		
 		while (sta.equals("")) {
 			try {
 				Thread.sleep(retry);
 				Document doc = Jsoup.connect(dr_url).get();
-				/* Elements td = doc.select("td");
-				sta = td.get(20).text();
-				System.out.println(String.format("第 %d 次檢查:", n));
-				System.out.println(">> " + sta);
-				if ( sta.equals(". 掛號 .") ) {
-					n += 1;
-					System.out.println(">> ^^可以掛號了^^");
-				} else {
-					n += 1;
-					System.out.println(">> !!仍不能掛號!!");
-					sta = "";
-				} */
 
 				System.out.printf("第 %d 次檢查: ", n);
 				Elements td = doc.select("td");
@@ -46,7 +33,7 @@ public class CheckDr {
 				if ( hasFree == 0 ) {
 					System.out.println(">> XXX 仍然無法掛號！ XXX");
 				} else {
-					System.out.printf(">> 有 %d 個空缺，請趕快掛號！\n", hasFree);
+					System.out.printf(">> %d 個時段有空缺，請趕快掛號！\n", hasFree);
 					// 發送 mail 放在此
 				}
 				n += 1;

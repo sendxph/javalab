@@ -51,13 +51,14 @@ public class CheckDr {
 				}
 
 				if ( hasFree == 0 ) {
-					System.out.println(">> XXX 仍然無法掛號！ XXX");
+					System.out.printf(">> !!! %s仍然無法掛號 !!!", drName);
+					System.out.println();
 				} else {
 					msg = ">> " + drName + "，" + String.format("%d 個時段有空缺，趕快掛號！", hasFree);
 					System.out.println(msg);
 					// Send mail in here
 					sendMail(host, from, toJC, subj, msg);
-					sendMail(host, from, toYv, subj, msg);
+					//sendMail(host, from, toYv, subj, msg);
 				}
 
 				n += 1;

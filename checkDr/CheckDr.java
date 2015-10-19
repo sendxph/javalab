@@ -8,18 +8,27 @@ import org.jsoup.select.Elements;
 
 public class CheckDr {
 	public static void main(String[] args) throws Exception {
-		//String dr_url = "https://reg.ntuh.gov.tw/WebAdministration/DtQueryB.aspx?Name=%E7%8E%8B%E6%B2%BB%E5%85%83";		// real Dr url
-		String dr_url = "https://reg.ntuh.gov.tw/WebAdministration/DtQueryA.aspx?x=SABvAHMAcAA9AFQAMAAmAE4AYQBtAGUAPQAhfE56wHk1";	// test Dr url
+		String drName = "眼科：王清泓醫師";
+		String drURL = "https://reg.ntuh.gov.tw/WebAdministration/DtQueryB.aspx?Name=%u738b%u6cbb%u5143";
+		
+		//String drName = "甲亢：王治元醫師";
+		//String drURL = "https://reg.ntuh.gov.tw/WebAdministration/DtQueryB.aspx?Name=%E7%8E%8B%E6%B2%BB%E5%85%83";
+		
+		//String drName = "Test";
+		//String drURL = "https://reg.ntuh.gov.tw/WebAdministration/DtQueryA.aspx?x=SABvAHMAcAA9AFQAMAAmAE4AYQBtAGUAPQAhfE56wHk1";	// test URL
+
 		int n = 1;			// the number of checking
 		int retry = 1000;	// retry interval time
 		String sta = "";		// Dr. status
 		int hasFree = 0;		// 有多少空缺數可以掛號
 
+		String msg = "";
+
 		while (sta.equals("")) {
 			try {
-				Thread.sleep(retry);
+				//Thread.sleep(retry);
 								
-				Document doc = Jsoup.connect(dr_url).get();
+				Document doc = Jsoup.connect(drURL).get();
 				Elements td = doc.select("td");
 				System.out.printf("第 %d 次檢查: ", n);
 				System.out.printf("有 %d 個td\n", td.size());
@@ -33,12 +42,14 @@ public class CheckDr {
 				if ( hasFree == 0 ) {
 					System.out.println(">> XXX 仍然無法掛號！ XXX");
 				} else {
-					System.out.printf(">> %d 個時段有空缺，請趕快掛號！\n", hasFree);
+					msg = ">> " + drName + "，" + String.format("%d 個時段有空缺，趕快掛號！", hasFree);
+					System.out.println(msg);
 					// 發送 mail 放在此
 				}
 
 				n += 1;
 				sta = "";
+				msg = "";
 				hasFree = 0;
 				System.out.println();
 			} catch (Exception e) {

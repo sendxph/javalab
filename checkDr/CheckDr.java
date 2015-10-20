@@ -98,7 +98,7 @@ public class CheckDr {
 	// show current date and time
 	static String showTime() {
 		Date date = new Date();
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd, HH:ss E");
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd, HH:mm:ss E");
 		return dateFormat.format(date);
 	}
 }

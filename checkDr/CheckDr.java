@@ -61,7 +61,7 @@ public class CheckDr {
 					System.out.println(msg);
 					// Send mail in here
 					sendMail(host, from, toJC, subj, msg);
-					//sendMail(host, from, toYv, subj, msg);
+					sendMail(host, from, toYv, subj, msg);
 				}
 
 				sta = "";

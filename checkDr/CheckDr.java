@@ -13,7 +13,7 @@ public class CheckDr {
 	public static void main(String[] args) throws Exception {
 		// Set Dr name & Dr URL
 		String drName = "眼科：王清泓醫師";
-		String drURL = "https://reg.ntuh.gov.tw/WebAdministration/DtQueryB.aspx?Name=%u738b%u6cbb%u5143";
+		String drURL = "https://reg.ntuh.gov.tw/webadministration/DtQueryA.aspx?x=SABvAHMAcAA9AFQAMAAmAE4AYQBtAGUAPQCLcwVu02w1";
 		
 		//String drName = "甲亢：王治元醫師";
 		//String drURL = "https://reg.ntuh.gov.tw/WebAdministration/DtQueryB.aspx?Name=%E7%8E%8B%E6%B2%BB%E5%85%83";
@@ -26,18 +26,18 @@ public class CheckDr {
 		int retry = 2000;	// retry interval time
 		String sta = "";		// Dr. status
 		int hasFree = 0;		// 有多少空缺數可以掛號
+		String msg = "";		// message show to console
 
-		// set mail function
+		// set mail properties
 		String host = "localhost";
 		String from = "CheckDr@jc.com";
 		String toJC = "macamd@gmail.com";
 		String toYv = "yoyo67890@gmail.com";
 		String subj = "台大可掛號通知";
-		String msg = "";
 
 		while (sta.equals("")) {
 			try {
-				Thread.sleep(retry);
+				//Thread.sleep(retry);
 								
 				Document doc = Jsoup.connect(drURL).get();
 				Elements td = doc.select("td");

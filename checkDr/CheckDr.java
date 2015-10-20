@@ -4,6 +4,10 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.*;
@@ -11,18 +15,17 @@ import javax.mail.internet.*;
 
 public class CheckDr {
 	public static void main(String[] args) throws Exception {
-		// Set Dr name & Dr URL
-		String drName = "眼科：王清泓醫師";
+		/* Set Dr name & Dr URL */
+		String drName = "台大眼科：王清泓醫師";
 		String drURL = "https://reg.ntuh.gov.tw/webadministration/DtQueryA.aspx?x=SABvAHMAcAA9AFQAMAAmAE4AYQBtAGUAPQCLcwVu02w1";
 		
-		//String drName = "甲亢：王治元醫師";
+		//String drName = "台大甲亢：王治元醫師";
 		//String drURL = "https://reg.ntuh.gov.tw/WebAdministration/DtQueryB.aspx?Name=%E7%8E%8B%E6%B2%BB%E5%85%83";
 		
-		//String drName = "測試：簡穎秀醫師";
+		//String drName = "台大測試：簡穎秀醫師";
 		//String drURL = "https://reg.ntuh.gov.tw/WebAdministration/DtQueryA.aspx?x=SABvAHMAcAA9AFQAMAAmAE4AYQBtAGUAPQAhfE56wHk1";
 
 		// Control parameters
-		int n = 1;			// the number of checking
 		int retry = 2000;	// retry interval time
 		String sta = "";		// Dr. status
 		int hasFree = 0;		// 有多少空缺數可以掛號
@@ -41,8 +44,8 @@ public class CheckDr {
 								
 				Document doc = Jsoup.connect(drURL).get();
 				Elements td = doc.select("td");
-				System.out.printf("第 %d 次檢查: ", n);
-				System.out.printf("有 %d 個td\n", td.size());
+				System.out.printf("%s 檢查: ", showTime());
+				System.out.printf("共有 %d 個td\n", td.size());
 				for (int i=0; i < td.size(); i++) {
 					sta = td.get(i).text();
 					if ( ". 掛號 .".equals(sta) ) {
@@ -61,7 +64,6 @@ public class CheckDr {
 					//sendMail(host, from, toYv, subj, msg);
 				}
 
-				n += 1;
 				sta = "";
 				msg = "";
 				hasFree = 0;
@@ -73,6 +75,7 @@ public class CheckDr {
 	}
 
 
+	// send mail if if find free number of Dr
 	static void sendMail(String h, String f, String t, String s, String m) {
 		try {
 			Properties props = System.getProperties();
@@ -89,5 +92,13 @@ public class CheckDr {
 			System.out.println("sendMail has an exception");
 			System.out.println(e.getMessage());
 		}
+	}
+
+
+	// show current date and time
+	static String showTime() {
+		Date date = new Date();
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd, HH:ss E");
+		return dateFormat.format(date);
 	}
 }

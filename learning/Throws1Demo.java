@@ -2,10 +2,10 @@ class Throws1Demo {
     public int divide(int a, int b) throws ArithmeticException {
         return a / b;
     }
-     
+
     public static void main(String[] args) {
         Throws1Demo t = new Throws1Demo();
-         
+
         try {
             System.out.println(t.divide(15, 20));
             System.out.println(t.divide(10, 2));

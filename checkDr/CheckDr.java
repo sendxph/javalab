@@ -16,8 +16,11 @@ import javax.mail.internet.*;
 public class CheckDr {
     public static void main(String[] args) throws Exception {
         /* Set Dr name & Dr URL */
-        String drName = "台大眼科：王清泓醫師";
-        String drURL = "https://reg.ntuh.gov.tw/webadministration/DtQueryA.aspx?x=SABvAHMAcAA9AFQAMAAmAE4AYQBtAGUAPQCLcwVu02w1";
+        //String drName = "台大眼科：王清泓醫師";
+        //String drURL = "https://reg.ntuh.gov.tw/webadministration/DtQueryA.aspx?x=SABvAHMAcAA9AFQAMAAmAE4AYQBtAGUAPQCLcwVu02w1";
+
+        String drName = "台大眼科：蔡紫薰醫師";
+        String drURL = "https://reg.ntuh.gov.tw/WebAdministration/DtQueryA.aspx?x=SABvAHMAcAA9AFQAMAAmAE4AYQBtAGUAPQAhhSt9sIU1";
 
         //String drName = "台大甲亢：王治元醫師";
         //String drURL = "https://reg.ntuh.gov.tw/WebAdministration/DtQueryB.aspx?Name=%E7%8E%8B%E6%B2%BB%E5%85%83";

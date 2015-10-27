@@ -1,4 +1,4 @@
-// Checking Dr.
+/* Checking Dr. */
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -16,14 +16,14 @@ import javax.mail.internet.*;
 public class CheckDr {
     public static void main(String[] args) throws Exception {
         /* Set Dr name & Dr URL */
-        String drName = "台大眼科：王清泓醫師";
-        String drURL = "https://reg.ntuh.gov.tw/webadministration/DtQueryA.aspx?x=SABvAHMAcAA9AFQAMAAmAE4AYQBtAGUAPQCLcwVu02w1";
+        //String drName = "台大眼科(青光眼)：王清泓醫師";
+        //String drURL = "https://reg.ntuh.gov.tw/webadministration/DtQueryA.aspx?x=SABvAHMAcAA9AFQAMAAmAE4AYQBtAGUAPQCLcwVu02w1";
 
         //String drName = "台大眼科：蔡紫薰醫師";
         //String drURL = "https://reg.ntuh.gov.tw/WebAdministration/DtQueryA.aspx?x=SABvAHMAcAA9AFQAMAAmAE4AYQBtAGUAPQAhhSt9sIU1";
 
-        //String drName = "台大甲亢：王治元醫師";
-        //String drURL = "https://reg.ntuh.gov.tw/WebAdministration/DtQueryB.aspx?Name=%E7%8E%8B%E6%B2%BB%E5%85%83";
+        String drName = "台大甲亢：王治元醫師";
+        String drURL = "https://reg.ntuh.gov.tw/WebAdministration/DtQueryB.aspx?Name=%E7%8E%8B%E6%B2%BB%E5%85%83";
 
         //String drName = "台大測試：簡穎秀醫師";
         //String drURL = "https://reg.ntuh.gov.tw/WebAdministration/DtQueryA.aspx?x=SABvAHMAcAA9AFQAMAAmAE4AYQBtAGUAPQAhfE56wHk1";
@@ -60,7 +60,7 @@ public class CheckDr {
                     System.out.printf(">> !!! %s仍然無法掛號 !!!", drName);
                     System.out.println();
                 } else {
-                    msg = ">> " + drName + "，" + String.format("%d 個時段有空缺，趕快掛號！", hasFree);
+                    msg = ">> " + drName + "，" + String.format("%d 個時段有空缺，趕快掛號！", hasFree) + drURL;
                     System.out.println(msg);
                     // Send mail in here
                     sendMail(host, from, toJC, subj, msg);
